@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Personal website portfolio — research, projects, and contact." />
+    <title>Your Name — Portfolio</title>
+
+    <!--
+      NEON + Catppuccin Mocha-inspired palette
+      Reference-ish: https://github.com/catppuccin/catppuccin (colors adapted)
+    -->
+    <style>
+      /* -----------------------------
+         Catppuccin Mocha + Neon tokens
+         ----------------------------- */
+      :root {
+        /* Base */
+        --base: #1e1e2e;
+        --mantle: #181825;
+        --crust: #11111b;
+
+        /* Surfaces */
+        --surface0: #313244;
+        --surface1: #45475a;
+        --surface2: #585b70;
+
+        /* Text */
+        --text: #cdd6f4;
+        --subtext0: #a6adc8;
+        --subtext1: #bac2de;
+
+        /* Accents (Mocha) */
+        --mauve: #cba6f7;
+        --pink: #f5c2e7;
+        --teal: #94e2d5;
+        --sky: #89dceb;
+        --sapphire: #74c7ec;
+        --blue: #89b4fa;
+        --green: #a6e3a1;
+        --yellow: #f9e2af;
+        --peach: #fab387;
+        --red: #f38ba8;
+
+        /* Neon “glow” accents (choose a primary) */
+        --neon-a: #00f5d4; /* neon teal */
+        --neon-b: #b517ff; /* neon violet */
+        --neon-c: #00b3ff; /* neon blue */
+
+        /* UI */
+        --border: rgba(205, 214, 244, 0.14);
+        --card: rgba(49, 50, 68, 0.58);
+        --card-strong: rgba(69, 71, 90, 0.55);
+        --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+        /* Typography */
+        --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+          monospace;
+
+        /* Layout */
+        --radius: 16px;
+        --radius-lg: 22px;
+        --maxw: 1100px;
+      }
+
+      /* -----------------------------
+         Base / Reset
+         ----------------------------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        color: var(--text);
+        background: radial-gradient(1200px 800px at 20% 10%, rgba(181, 23, 255, 0.14), transparent 60%),
+          radial-gradient(900px 700px at 80% 20%, rgba(0, 245, 212, 0.12), transparent 55%),
+          radial-gradient(900px 700px at 50% 90%, rgba(0, 179, 255, 0.10), transparent 55%),
+          linear-gradient(180deg, var(--crust), var(--base));
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      ::selection {
+        background: rgba(0, 245, 212, 0.24);
+      }
+
+      /* -----------------------------
+         Utility
+         ----------------------------- */
+      .container {
+        width: min(var(--maxw), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(24, 24, 37, 0.35);
+        backdrop-filter: blur(10px);
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+        color: var(--subtext1);
+      }
+
+      /* Neon border + glow utility */
+      .glow {
+        position: relative;
+      }
+      .glow::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(0, 245, 212, 0.7), rgba(181, 23, 255, 0.7), rgba(0, 179, 255, 0.7));
+        filter: blur(10px);
+        opacity: 0.35;
+        z-index: -2;
+      }
+      .glow::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(137, 180, 250, 0.25);
+        z-index: -1;
+      }
+
+      /* -----------------------------
+         Top Nav
+         ----------------------------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid rgba(205, 214, 244, 0.08);
+        background: rgba(17, 17, 27, 0.6);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        gap: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 220px;
+      }
+
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(0, 245, 212, 0.95), rgba(181, 23, 255, 0.9));
+        box-shadow: 0 0 0 1px rgba(205, 214, 244, 0.16), 0 10px 30px rgba(181, 23, 255, 0.22);
+      }
+
+      .brand strong {
+        font-size: 14px;
+        letter-spacing: 0.4px;
+      }
+
+      .brand span {
+        display: block;
+        font-size: 12px;
+        color: var(--subtext0);
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        display: inline-flex;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        color: var(--subtext1);
+        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+      }
+
+      nav a:hover {
+        transform: translateY(-1px);
+        border-color: rgba(137, 180, 250, 0.22);
+        background: rgba(49, 50, 68, 0.35);
+        color: var(--text);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 245, 212, 0.35);
+        background: linear-gradient(180deg, rgba(0, 245, 212, 0.14), rgba(181, 23, 255, 0.08));
+        box-shadow: 0 0 0 1px rgba(205, 214, 244, 0.08);
+        color: var(--text);
+      }
+
+      .nav-cta:hover {
+        border-color: rgba(181, 23, 255, 0.45);
+      }
+
+      /* -----------------------------
+         Hero
+         ----------------------------- */
+      .hero {
+        padding: 48px 0 26px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.6fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .card {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+
+      .hero-main {
+        padding: 26px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        color: var(--subtext0);
+        font-size: 13px;
+        letter-spacing: 0.2px;
+        margin-bottom: 12px;
+      }
+
+      .kicker-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--neon-a);
+        box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.12), 0 0 24px rgba(0, 245, 212, 0.25);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(30px, 4vw, 42px);
+        line-height: 1.08;
+        letter-spacing: -0.6px;
+      }
+
+      .subtitle {
+        margin: 0 0 18px;
+        color: var(--subtext1);
+        font-size: 15px;
+        line-height: 1.55;
+        max-width: 70ch;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(24, 24, 37, 0.35);
+        color: var(--text);
+        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(137, 180, 250, 0.3);
+        background: rgba(49, 50, 68, 0.42);
+      }
+
+      .btn-primary {
+        border-color: rgba(0, 245, 212, 0.35);
+        background: linear-gradient(180deg, rgba(0, 245, 212, 0.18), rgba(181, 23, 255, 0.10));
+        position: relative;
+      }
+
+      .btn-primary:hover {
+        border-color: rgba(181, 23, 255, 0.5);
+      }
+
+      .hero-side {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .profile {
+        display: grid;
+        gap: 12px;
+      }
+
+      .avatar {
+        border-radius: 18px;
+        aspect-ratio: 1 / 1;
+        background: radial-gradient(90% 90% at 30% 20%, rgba(245, 194, 231, 0.18), transparent 55%),
+          radial-gradient(70% 70% at 70% 70%, rgba(148, 226, 213, 0.18), transparent 55%),
+          rgba(69, 71, 90, 0.35);
+        border: 1px dashed rgba(205, 214, 244, 0.22);
+        display: grid;
+        place-items: center;
+        color: var(--subtext0);
+      }
+
+      .statgrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 14px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(205, 214, 244, 0.10);
+        background: rgba(17, 17, 27, 0.35);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--subtext0);
+      }
+
+      /* -----------------------------
+         Sections
+         ----------------------------- */
+      main {
+        padding: 22px 0 64px;
+      }
+
+      section {
+        margin-top: 18px;
+      }
+
+      .section-card {
+        padding: 22px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+
+      .section-head small {
+        color: var(--subtext0);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+
+      .col-6 {
+        grid-column: span 6;
+      }
+
+      .col-12 {
+        grid-column: span 12;
+      }
+
+      .item {
+        padding: 16px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(205, 214, 244, 0.10);
+        background: rgba(49, 50, 68, 0.35);
+      }
+
+      .item h3 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+
+      .item p {
+        margin: 0;
+        color: var(--subtext1);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .meta {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(205, 214, 244, 0.12);
+        background: rgba(17, 17, 27, 0.35);
+        color: var(--subtext1);
+      }
+
+      .tag.neon {
+        border-color: rgba(0, 245, 212, 0.35);
+        box-shadow: 0 0 0 1px rgba(0, 245, 212, 0.08), 0 0 22px rgba(0, 245, 212, 0.10);
+      }
+
+      /* -----------------------------
+         Timeline
+         ----------------------------- */
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .tl {
+        padding: 16px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(205, 214, 244, 0.10);
+        background: rgba(17, 17, 27, 0.35);
+      }
+
+      .tl-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: baseline;
+        flex-wrap: wrap;
+      }
+
+      .tl-top strong {
+        font-size: 14px;
+      }
+
+      .tl-top span {
+        color: var(--subtext0);
+        font-size: 12px;
+      }
+
+      .tl p {
+        margin: 8px 0 0;
+        color: var(--subtext1);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      /* -----------------------------
+         Footer
+         ----------------------------- */
+      footer {
+        border-top: 1px solid rgba(205, 214, 244, 0.08);
+        padding: 26px 0 40px;
+        color: var(--subtext0);
+      }
+
+      .foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* -----------------------------
+         Responsive
+         ----------------------------- */
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .brand {
+          min-width: unset;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .col-6 {
+          grid-column: span 12;
+        }
+        nav ul {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Top Nav -->
+    <header>
+      <div class="container">
+        <div class="nav">
+          <a class="brand" href="#top" aria-label="Go to top">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <strong>Your Name</strong>
+              <span class="mono">Role / Specialty (e.g., Applied ML • Physics • SWE)</span>
+            </div>
+          </a>
+
+          <nav aria-label="Primary">
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#publications">Publications</a></li>
+              <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <div id="top" class="container hero">
+      <div class="hero-grid">
+        <section class="card hero-main glow" aria-label="Intro">
+          <div class="kicker">
+            <span class="kicker-dot" aria-hidden="true"></span>
+            <span>Open to opportunities • <span class="mono">City, Country</span></span>
+          </div>
+
+          <h1>
+            Your headline goes here:
+            <span style="color: var(--neon-a); text-shadow: 0 0 22px rgba(0,245,212,0.22);">impact</span>
+            you deliver.
+          </h1>
+
+          <p class="subtitle">
+            Short positioning statement tailored to employers: your domain, what you build/research, and the outcomes you
+            deliver. Keep it concrete (metrics, scale, novelty, reliability, speed).
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+            <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+            <a class="btn" href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </section>
+
+        <aside class="card hero-side" aria-label="Profile summary">
+          <div class="profile">
+            <div class="avatar glow" aria-label="Profile image placeholder">
+              <span class="mono">Add photo / logo</span>
+            </div>
+
+            <div class="statgrid">
+              <div class="stat">
+                <strong>Focus</strong>
+                <span>e.g., ML systems, research, full-stack</span>
+              </div>
+              <div class="stat">
+                <strong>Strength</strong>
+                <span>e.g., shipping, rigor, leadership</span>
+              </div>
+              <div class="stat">
+                <strong>Availability</strong>
+                <span>e.g., immediately / 4 weeks</span>
+              </div>
+              <div class="stat">
+                <strong>Contact</strong>
+                <span class="mono">you@domain.com</span>
+              </div>
+            </div>
+
+            <div class="pill">
+              <span class="mono">Currently:</span>
+              <span>One-line current role / research topic</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <main class="container">
+      <!-- About -->
+      <section id="about" class="card section-card glow" aria-label="About">
+        <div class="section-head">
+          <h2>About</h2>
+          <small class="mono">2–4 sentences; employer-first narrative</small>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 item">
+            <h3>Summary</h3>
+            <p>
+              Write a concise summary emphasizing value: the problems you solve, your method, your collaboration style,
+              and the results. If you’re academic/research: include domain, methods, and practical translation.
+            </p>
+            <div class="meta">
+              <span class="tag neon">Core strength</span>
+              <span class="tag">Domain</span>
+              <span class="tag">Preferred roles</span>
+              <span class="tag">Location / Remote</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="card section-card" aria-label="Skills">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <small class="mono">Keep it scannable</small>
+        </div>
+
+        <div class="grid">
+          <div class="col-6 item">
+            <h3>Technical</h3>
+            <p>
+              Languages, frameworks, tools. Favor proficiency + evidence (e.g., “Python (advanced), C++ (intermediate)”).
+            </p>
+            <div class="meta">
+              <span class="tag neon">Python</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">C++</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+
+          <div class="col-6 item">
+            <h3>Domain</h3>
+            <p>Methods and specialized knowledge areas that map to job descriptions.</p>
+            <div class="meta">
+              <span class="tag neon">Optimization</span>
+              <span class="tag">ML</span>
+              <span class="tag">Distributed systems</span>
+              <span class="tag">Numerics</span>
+              <span class="tag">Research</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="card section-card glow" aria-label="Projects">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <small class="mono">3–6 highlights; outcomes + links</small>
+        </div>
+
+        <div class="grid">
+          <article class="col-6 item">
+            <h3>Project Title A</h3>
+            <p>
+              One-paragraph employer-facing description. Include impact metrics (latency, cost, accuracy, adoption) and
+              your role. Mention key constraints.
+            </p>
+            <div class="meta">
+              <span class="tag neon">Neon highlight</span>
+              <span class="tag">Tech</span>
+              <span class="tag">Scale</span>
+              <a class="tag" href="#" target="_blank" rel="noopener">Demo</a>
+              <a class="tag" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="col-6 item">
+            <h3>Project Title B</h3>
+            <p>
+              Focus on what the employer cares about: novelty, robustness, maintainability, and measured results.
+            </p>
+            <div class="meta">
+              <span class="tag neon">Performance</span>
+              <span class="tag">Reliability</span>
+              <a class="tag" href="#" target="_blank" rel="noopener">Write-up</a>
+              <a class="tag" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </article>
+
+          <article class="col-6 item">
+            <h3>Project Title C</h3>
+            <p>Optional additional projects. Prefer fewer, stronger entries over long lists.</p>
+            <div class="meta">
+              <span class="tag neon">Research</span>
+              <span class="tag">Method</span>
+              <a class="tag" href="#" target="_blank" rel="noopener">Paper</a>
+            </div>
+          </article>
+
+          <article class="col-6 item">
+            <h3>Project Title D</h3>
+            <p>Another strong project. Consider adding a short “What I’d do next” for depth.</p>
+            <div class="meta">
+              <span class="tag neon">Systems</span>
+              <span class="tag">Infra</span>
+              <a class="tag" href="#" target="_blank" rel="noopener">Case study</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="card section-card" aria-label="Experience">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <small class="mono">Chronological; quantified bullets</small>
+        </div>
+
+        <div class="timeline">
+          <div class="tl">
+            <div class="tl-top">
+              <strong>Role Title — Company / Lab</strong>
+              <span class="mono">YYYY–YYYY • Location</span>
+            </div>
+            <p>
+              2–4 bullets worth of content in paragraph form if you prefer: scope, key wins, metrics, stakeholders, and
+              technologies. Keep each line evidence-based.
+            </p>
+          </div>
+
+          <div class="tl">
+            <div class="tl-top">
+              <strong>Role Title — Company / Lab</strong>
+              <span class="mono">YYYY–YYYY • Location</span>
+            </div>
+            <p>Additional role entry.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications / Talks -->
+      <section id="publications" class="card section-card glow" aria-label="Publications">
+        <div class="section-head">
+          <h2>Publications & Talks</h2>
+          <small class="mono">Optional; linkable citations</small>
+        </div>
+
+        <div class="grid">
+          <div class="col-12 item">
+            <h3>Selected</h3>
+            <p>
+              Use a short list format for publications (title, venue, year). Link to DOI/arXiv/slides. If your target is
+              industry, keep this concise and highlight relevance.
+            </p>
+
+            <div class="meta">
+              <a class="tag neon" href="#" target="_blank" rel="noopener">Paper: Title (Year)</a>
+              <a class="tag" href="#" target="_blank" rel="noopener">Talk: Title (Event)</a>
+              <a class="tag" href="#" target="_blank" rel="noopener">Poster: Title (Venue)</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="card section-card" aria-label="Contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <small class="mono">Make it easy to reach you</small>
+        </div>
+
+        <div class="grid">
+          <div class="col-6 item">
+            <h3>Direct</h3>
+            <p>
+              Email is best for recruiters. Add scheduling link if you use one. Include timezone and typical response
+              time if helpful.
+            </p>
+            <div class="meta">
+              <span class="tag neon mono">you@domain.com</span>
+              <a class="tag" href="https://cal.com/" target="_blank" rel="noopener">Schedule</a>
+              <a class="tag" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="col-6 item">
+            <h3>Message (optional)</h3>
+            <p>
+              If you later add a backend, wire this form to it. For now, it’s a visual placeholder.
+            </p>
+
+            <form onsubmit="event.preventDefault();" aria-label="Contact form">
+              <label class="sr-only" for="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                placeholder="Name"
+                style="
+                  width: 100%;
+                  margin-top: 10px;
+                  padding: 12px 12px;
+                  border-radius: 14px;
+                  border: 1px solid rgba(205, 214, 244, 0.14);
+                  background: rgba(17, 17, 27, 0.35);
+                  color: var(--text);
+                  outline: none;
+                "
+              />
+              <label class="sr-only" for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                placeholder="Email"
+                type="email"
+                style="
+                  width: 100%;
+                  margin-top: 10px;
+                  padding: 12px 12px;
+                  border-radius: 14px;
+                  border: 1px solid rgba(205, 214, 244, 0.14);
+                  background: rgba(17, 17, 27, 0.35);
+                  color: var(--text);
+                  outline: none;
+                "
+              />
+              <label class="sr-only" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Message"
+                rows="4"
+                style="
+                  width: 100%;
+                  margin-top: 10px;
+                  padding: 12px 12px;
+                  border-radius: 14px;
+                  border: 1px solid rgba(205, 214, 244, 0.14);
+                  background: rgba(17, 17, 27, 0.35);
+                  color: var(--text);
+                  outline: none;
+                  resize: vertical;
+                "
+              ></textarea>
+
+              <button class="btn btn-primary" type="submit" style="margin-top: 10px; width: 100%;">
+                Send (placeholder)
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div class="mono">© <span id="year"></span> Your Name. Built with HTML/CSS.</div>
+          <div class="mono">
+            <a href="#top" style="border-bottom: 1px dashed rgba(205,214,244,0.22);">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Small convenience: set footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Optional: smooth scrolling for anchor links
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", id);
+      });
+    </script>
+  </body>
+</html>
