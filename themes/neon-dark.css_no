@@ -1,0 +1,132 @@
+/* ==========================================================================
+   NEON DARK THEME - Catppuccin-inspired with neon accents
+   ========================================================================== */
+
+:root {
+  /* Base colors */
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+  --surface0: #313244;
+  --surface1: #45475a;
+  --surface2: #585b70;
+
+  /* Text colors */
+  --text: #cdd6f4;
+  --muted: #a6adc8;
+  --subtext1: #bac2de;
+
+  /* Accent palette */
+  --accent: #00f5d4;
+  --accent-2: #b517ff;
+  --accent-3: #00b3ff;
+  --blue: #89b4fa;
+
+  /* Catppuccin extras (for custom use) */
+  --mauve: #cba6f7;
+  --pink: #f5c2e7;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --green: #a6e3a1;
+  --yellow: #f9e2af;
+  --peach: #fab387;
+  --red: #f38ba8;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Sizing */
+  --radius: 16px;
+  --radius-lg: 22px;
+  --maxw: 1100px;
+
+  /* Derived colors */
+  --border: rgba(205, 214, 244, 0.14);
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --selection-bg: rgba(0, 245, 212, 0.24);
+  --link-color: inherit;
+  --link-hover: var(--text);
+  --link-underline: rgba(205, 214, 244, 0.22);
+
+  /* Background */
+  --body-bg:
+    radial-gradient(1200px 800px at 20% 10%, rgba(181, 23, 255, 0.14), transparent 60%),
+    radial-gradient(900px 700px at 80% 20%, rgba(0, 245, 212, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 50% 90%, rgba(0, 179, 255, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--crust), var(--base));
+
+  /* Effects */
+  --blur-effect: blur(12px);
+
+  /* Glow effects */
+  --glow-gradient: linear-gradient(90deg, rgba(0, 245, 212, 0.7), rgba(181, 23, 255, 0.7), rgba(0, 179, 255, 0.7));
+  --glow-opacity: 0.35;
+  --glow-border: rgba(137, 180, 250, 0.25);
+  --glow-hover-opacity: 0.45;
+
+  /* Header */
+  --header-bg: rgba(17, 17, 27, 0.6);
+  --header-border: rgba(205, 214, 244, 0.08);
+
+  /* Logo */
+  --logo-bg: linear-gradient(135deg, rgba(0, 245, 212, 0.95), rgba(181, 23, 255, 0.9));
+  --logo-shadow: 0 0 0 1px rgba(205, 214, 244, 0.16), 0 10px 30px rgba(181, 23, 255, 0.22);
+
+  /* Navigation */
+  --nav-hover-border: rgba(137, 180, 250, 0.22);
+  --nav-hover-bg: rgba(49, 50, 68, 0.35);
+
+  /* CTA button */
+  --cta-border: rgba(0, 245, 212, 0.35);
+  --cta-bg: linear-gradient(180deg, rgba(0, 245, 212, 0.14), rgba(181, 23, 255, 0.08));
+  --cta-shadow: 0 0 0 1px rgba(205, 214, 244, 0.08);
+  --cta-hover-border: rgba(181, 23, 255, 0.45);
+
+  /* Cards */
+  --card-bg: rgba(49, 50, 68, 0.58);
+  --pill-bg: rgba(24, 24, 37, 0.35);
+
+  /* Kicker dot */
+  --kicker-dot-shadow: 0 0 0 3px rgba(0, 245, 212, 0.12), 0 0 24px rgba(0, 245, 212, 0.25);
+
+  /* Buttons */
+  --btn-bg: rgba(24, 24, 37, 0.35);
+  --btn-hover-border: rgba(137, 180, 250, 0.3);
+  --btn-hover-bg: rgba(49, 50, 68, 0.42);
+  --btn-primary-border: rgba(0, 245, 212, 0.35);
+  --btn-primary-bg: linear-gradient(180deg, rgba(0, 245, 212, 0.18), rgba(181, 23, 255, 0.10));
+  --btn-primary-hover-border: rgba(181, 23, 255, 0.5);
+
+  /* Avatar */
+  --avatar-border: rgba(205, 214, 244, 0.22);
+  --avatar-bg: rgba(69, 71, 90, 0.35);
+
+  /* Stats */
+  --stat-border: rgba(205, 214, 244, 0.10);
+  --stat-bg: rgba(17, 17, 27, 0.35);
+
+  /* Items */
+  --item-border: rgba(205, 214, 244, 0.10);
+  --item-bg: rgba(49, 50, 68, 0.35);
+
+  /* Tags */
+  --tag-border: rgba(205, 214, 244, 0.12);
+  --tag-bg: rgba(17, 17, 27, 0.35);
+  --tag-neon-border: rgba(0, 245, 212, 0.35);
+  --tag-neon-shadow: 0 0 0 1px rgba(0, 245, 212, 0.08), 0 0 22px rgba(0, 245, 212, 0.10);
+
+  /* Timeline */
+  --tl-border: rgba(205, 214, 244, 0.10);
+  --tl-bg: rgba(17, 17, 27, 0.35);
+
+  /* Footer */
+  --footer-border: rgba(205, 214, 244, 0.08);
+
+  /* Profile */
+  --profile-photo-border: rgba(205, 214, 244, 0.22);
+  --profile-photo-bg: rgba(69, 71, 90, 0.35);
+  --profile-line-border: rgba(205, 214, 244, 0.10);
+  --profile-line-bg: rgba(17, 17, 27, 0.35);
+}

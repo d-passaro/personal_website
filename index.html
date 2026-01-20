@@ -6,351 +6,10 @@
     <meta name="description" content="Davide Passaro — Theoretical Physics, research, projects, publications, and contact." />
     <title>Davide Passaro — Portfolio</title>
 
-    <style>
-      :root {
-        --base: #1e1e2e;
-        --mantle: #181825;
-        --crust: #11111b;
-
-        --surface0: #313244;
-        --surface1: #45475a;
-        --surface2: #585b70;
-
-        --text: #cdd6f4;
-        --subtext0: #a6adc8;
-        --subtext1: #bac2de;
-
-        --mauve: #cba6f7;
-        --pink: #f5c2e7;
-        --teal: #94e2d5;
-        --sky: #89dceb;
-        --sapphire: #74c7ec;
-        --blue: #89b4fa;
-        --green: #a6e3a1;
-        --yellow: #f9e2af;
-        --peach: #fab387;
-        --red: #f38ba8;
-
-        --neon-a: #00f5d4;
-        --neon-b: #b517ff;
-        --neon-c: #00b3ff;
-
-        --border: rgba(205, 214, 244, 0.14);
-        --card: rgba(49, 50, 68, 0.58);
-        --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-
-        --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji",
-          "Segoe UI Emoji";
-        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-          monospace;
-
-        --radius: 16px;
-        --radius-lg: 22px;
-        --maxw: 1100px;
-      }
-
-      *, *::before, *::after { box-sizing: border-box; }
-      html, body { height: 100%; }
-      body {
-        margin: 0;
-        font-family: var(--font-sans);
-        color: var(--text);
-        background: radial-gradient(1200px 800px at 20% 10%, rgba(181, 23, 255, 0.14), transparent 60%),
-          radial-gradient(900px 700px at 80% 20%, rgba(0, 245, 212, 0.12), transparent 55%),
-          radial-gradient(900px 700px at 50% 90%, rgba(0, 179, 255, 0.10), transparent 55%),
-          linear-gradient(180deg, var(--crust), var(--base));
-        overflow-x: hidden;
-      }
-      a { color: inherit; text-decoration: none; }
-      img { max-width: 100%; display: block; }
-      ::selection { background: rgba(0, 245, 212, 0.24); }
-
-      .container { width: min(var(--maxw), calc(100% - 40px)); margin: 0 auto; }
-      .sr-only {
-        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-      }
-      .pill {
-        display: inline-flex; align-items: center; gap: 8px;
-        padding: 8px 12px; border-radius: 999px;
-        border: 1px solid var(--border);
-        background: rgba(24, 24, 37, 0.35);
-        backdrop-filter: blur(10px);
-      }
-      .mono { font-family: var(--font-mono); color: var(--subtext1); }
-
-      .glow { position: relative; }
-      .glow::before {
-        content: ""; position: absolute; inset: -1px; border-radius: inherit;
-        background: linear-gradient(90deg, rgba(0, 245, 212, 0.7), rgba(181, 23, 255, 0.7), rgba(0, 179, 255, 0.7));
-        filter: blur(10px); opacity: 0.35; z-index: -2;
-      }
-      .glow::after {
-        content: ""; position: absolute; inset: 0; border-radius: inherit;
-        border: 1px solid rgba(137, 180, 250, 0.25); z-index: -1;
-      }
-
-      header {
-        position: sticky; top: 0; z-index: 50;
-        border-bottom: 1px solid rgba(205, 214, 244, 0.08);
-        background: rgba(17, 17, 27, 0.6);
-        backdrop-filter: blur(14px);
-      }
-      .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 14px; }
-      .brand { display: flex; align-items: center; gap: 12px; min-width: 220px; }
-      .logo {
-        width: 36px; height: 36px; border-radius: 12px;
-        background: linear-gradient(135deg, rgba(0, 245, 212, 0.95), rgba(181, 23, 255, 0.9));
-        box-shadow: 0 0 0 1px rgba(205, 214, 244, 0.16), 0 10px 30px rgba(181, 23, 255, 0.22);
-      }
-      .brand strong { font-size: 14px; letter-spacing: 0.4px; }
-      .brand span { display: block; font-size: 12px; color: var(--subtext0); }
-
-      nav ul {
-        list-style: none; padding: 0; margin: 0;
-        display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end;
-      }
-      nav a {
-        display: inline-flex; padding: 10px 12px; border-radius: 12px;
-        border: 1px solid transparent; color: var(--subtext1);
-        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
-      }
-      nav a:hover {
-        transform: translateY(-1px);
-        border-color: rgba(137, 180, 250, 0.22);
-        background: rgba(49, 50, 68, 0.35);
-        color: var(--text);
-      }
-      .nav-cta {
-        display: inline-flex; align-items: center; gap: 10px;
-        padding: 10px 14px; border-radius: 14px;
-        border: 1px solid rgba(0, 245, 212, 0.35);
-        background: linear-gradient(180deg, rgba(0, 245, 212, 0.14), rgba(181, 23, 255, 0.08));
-        box-shadow: 0 0 0 1px rgba(205, 214, 244, 0.08);
-        color: var(--text);
-      }
-      .nav-cta:hover { border-color: rgba(181, 23, 255, 0.45); }
-
-      .hero { padding: 48px 0 26px; }
-      .hero-grid { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 22px; align-items: stretch; }
-
-      .card {
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--border);
-        background: rgba(49, 50, 68, 0.58);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(12px);
-      }
-
-      .hero-main { padding: 26px; }
-      .kicker {
-        display: inline-flex; gap: 10px; align-items: center;
-        color: var(--subtext0); font-size: 13px; letter-spacing: 0.2px; margin-bottom: 12px;
-      }
-      .kicker-dot {
-        width: 10px; height: 10px; border-radius: 999px;
-        background: var(--neon-a);
-        box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.12), 0 0 24px rgba(0, 245, 212, 0.25);
-      }
-      h1 {
-        margin: 0 0 10px;
-        font-size: clamp(30px, 4vw, 42px);
-        line-height: 1.08;
-        letter-spacing: -0.6px;
-      }
-      .subtitle {
-        margin: 0 0 18px;
-        color: var(--subtext1);
-        font-size: 15px;
-        line-height: 1.55;
-        max-width: 70ch;
-      }
-      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-
-      .btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-        padding: 12px 14px; border-radius: 14px;
-        border: 1px solid var(--border);
-        background: rgba(24, 24, 37, 0.35);
-        color: var(--text);
-        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
-      }
-      .btn:hover {
-        transform: translateY(-1px);
-        border-color: rgba(137, 180, 250, 0.3);
-        background: rgba(49, 50, 68, 0.42);
-      }
-      .btn-primary {
-        border-color: rgba(0, 245, 212, 0.35);
-        background: linear-gradient(180deg, rgba(0, 245, 212, 0.18), rgba(181, 23, 255, 0.10));
-        position: relative;
-      }
-      .btn-primary:hover { border-color: rgba(181, 23, 255, 0.5); }
-
-      .hero-side { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
-      .profile { display: grid; gap: 12px; }
-
-      .avatar {
-        border-radius: 18px;
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-        border: 1px solid rgba(205, 214, 244, 0.22);
-        background: rgba(69, 71, 90, 0.35);
-      }
-
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .statgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-      .stat {
-        padding: 14px; border-radius: var(--radius);
-        border: 1px solid rgba(205, 214, 244, 0.10);
-        background: rgba(17, 17, 27, 0.35);
-      }
-      .stat strong { display: block; font-size: 14px; margin-bottom: 4px; }
-      .stat span {
-        font-size: 12px;
-        color: var(--subtext0);
-
-        /* FIX */
-        word-break: break-word;
-        overflow-wrap: anywhere;
-      }
-
-      main { padding: 22px 0 64px; }
-      section { margin-top: 18px; }
-      .section-card { padding: 22px; }
-      .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-      h2 { margin: 0; font-size: 18px; letter-spacing: 0.2px; }
-      .section-head small { color: var(--subtext0); }
-
-      .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
-      .col-6 { grid-column: span 6; }
-      .col-12 { grid-column: span 12; }
-
-      .item {
-        padding: 16px;
-        border-radius: var(--radius);
-        border: 1px solid rgba(205, 214, 244, 0.10);
-        background: rgba(49, 50, 68, 0.35);
-      }
-      .item h3 { margin: 0 0 6px; font-size: 14px; letter-spacing: 0.2px; }
-      .item p { margin: 0; color: var(--subtext1); font-size: 13px; line-height: 1.5; }
-
-      .meta { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
-      .tag {
-        font-size: 12px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(205, 214, 244, 0.12);
-        background: rgba(17, 17, 27, 0.35);
-        color: var(--subtext1);
-      }
-      .tag.neon {
-        border-color: rgba(0, 245, 212, 0.35);
-        box-shadow: 0 0 0 1px rgba(0, 245, 212, 0.08), 0 0 22px rgba(0, 245, 212, 0.10);
-      }
-
-      .timeline { display: grid; gap: 12px; }
-      .tl {
-        padding: 16px; border-radius: var(--radius);
-        border: 1px solid rgba(205, 214, 244, 0.10);
-        background: rgba(17, 17, 27, 0.35);
-      }
-      .tl-top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-      .tl-top strong { font-size: 14px; }
-      .tl-top span { color: var(--subtext0); font-size: 12px; }
-      .tl p { margin: 8px 0 0; color: var(--subtext1); font-size: 13px; line-height: 1.55; }
-
-      footer { border-top: 1px solid rgba(205, 214, 244, 0.08); padding: 26px 0 40px; color: var(--subtext0); }
-      .foot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
-    
-      /* Profile block (photo left, details right) */
-      .profile-card {
-        padding: 18px;
-      }
-
-      .profile-row {
-        display: grid;
-        grid-template-columns: 550px 1fr;
-        gap: 18px;
-        align-items: stretch;
-      }
-
-      .profile-photo {
-        border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid rgba(205, 214, 244, 0.22);
-        background: rgba(69, 71, 90, 0.35); 
-        aspect-ratio: 1 / 1;
-      }
-
-      .profile-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .profile-details {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        min-width: 0; /* important for wrapping long text */
-      }
-
-      .profile-line {
-        padding: 12px 14px;
-        border-radius: var(--radius);
-        border: 1px solid rgba(205, 214, 244, 0.10);
-        background: rgba(17, 17, 27, 0.35);
-      }
-
-      .profile-label {
-        font-size: 12px;
-        color: var(--subtext0);
-        margin-bottom: 4px;
-      }
-
-      .profile-value {
-        font-size: 13px;
-        color: var(--text);
-        line-height: 1.4;
-
-        /* fix long strings like emails */
-        overflow-wrap: anywhere;
-        word-break: break-word;
-      }
-
-      .profile-value a {
-        border-bottom: 1px dashed rgba(205, 214, 244, 0.22);
-      }
-
-      /* Responsive: stack photo above details on small screens */
-      @media (max-width: 760px) {
-        .profile-row {
-          grid-template-columns: 1fr;
-        }
-        .profile-photo {
-          max-width: 320px;
-        }
-      }
-
-      @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .brand { min-width: unset; } }
-      @media (max-width: 760px) { .col-6 { grid-column: span 12; } nav ul { justify-content: flex-start; } }
-
-      .education-list {
-        margin: 0 0 10px;
-        padding-left: 18px; /* bullet indent */
-      }
-      .education-list li {
-        margin: 6px 0;
-        color: var(--subtext1); /* matches your other body text tone */
-        line-height: 1.5;
-      }
-    </style>
+    <!-- Base layout (required) -->
+    <link rel="stylesheet" href="base.css">
+    <!-- Theme (swap this file to change colors) -->
+    <link rel="stylesheet" href="themes/mono-dark.css" id="theme-link">
   </head>
 
   <body>
@@ -358,7 +17,6 @@
       <div class="container">
         <div class="nav">
           <a class="brand" href="#top" aria-label="Go to top">
-            <div class="logo" aria-hidden="true"></div>
             <div>
               <strong>Davide Passaro</strong>
               <span class="mono">Computational Mathematics • AI research • Theoretical Physics • Postdoctoral Scholar</span>
@@ -367,50 +25,24 @@
 
           <nav aria-label="Primary">
             <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#publications">Publications</a></li>
+              <li><a class="glow-hover" href="#about">About</a></li>
+              <li><a class="glow-hover" href="#skills">Skills</a></li>
+              <li><a class="glow-hover" href="#projects">Projects</a></li>
+              <li><a class="glow-hover" href="#experience">Experience</a></li>
+              <li><a class="glow-hover" href="#publications">Publications</a></li>
+              <li>
+                <select id="theme-select" class="theme-select" aria-label="Select theme">
+                  <!-- <option value="neon-dark">Neon Dark</option> -->
+                  <option value="mono-dark">Mono Dark</option>
+                  <option value="minimal-light">Minimal Light</option>
+                </select>
+              </li>
             </ul>
           </nav>
         </div>
       </div>
     </header>
 
-    <div id="top" class="container hero">
-        <section class="card hero-main glow" aria-label="Intro">
-          <div class="kicker">
-            <span class="kicker-dot" aria-hidden="true"></span>
-            <span>Pasadena, California (USA) • <span class=hmono">Caltech</span></span>
-          </div>
-
-          <h1>
-            Davide Passaro —
-            <span style="color: var(--neon-a); text-shadow: 0 0 22px rgba(0,245,212,0.22);">Computational Mathematics, AI and Theoretical Physics</span>
-            research.
-          </h1>
-
-          <p class="subtitle">
-            Sherman Fairchild Postdoctoral Scholar Research Associate in Theoretical Physics at Caltech. ORCID:
-            <a
-              class="mono"
-              href="https://orcid.org/0000-0001-5368-4635"
-              target="_blank"
-              rel="noopener"
-              style="border-bottom: 1px dashed rgba(205,214,244,0.22);"
-              >0000-0001-5368-4635</a
-            >.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn" href="#publications">Publications</a>
-            <a class="btn" href="resumeDP.pdf" target="_blank" rel="noopener">Download Résumé</a>
-            <a class="btn" href="https://github.com/d-passaro" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </section>
-    </div>
     <section class="container" aria-label="Profile">
       <div class="card section-card profile-card">
         <div class="profile-row">
@@ -474,6 +106,40 @@
         </div>
       </div>
     </section>
+
+    <div id="top" class="container hero">
+        <section class="card hero-main glow" aria-label="Intro">
+          <div class="kicker">
+            <span class="kicker-dot" aria-hidden="true"></span>
+            <span>Pasadena, California (USA) • <span class=hmono">Caltech</span></span>
+          </div>
+
+          <h1>
+            Davide Passaro —
+            <span style="color: var(--neon-a); text-shadow: 0 0 22px rgba(0,245,212,0.22);">Computational Mathematics, AI and Theoretical Physics</span>
+            research.
+          </h1>
+
+          <p class="subtitle">
+            Sherman Fairchild Postdoctoral Scholar Research Associate in Theoretical Physics at Caltech. ORCID:
+            <a
+              class="mono"
+              href="https://orcid.org/0000-0001-5368-4635"
+              target="_blank"
+              rel="noopener"
+              style="border-bottom: 1px dashed rgba(205,214,244,0.22);"
+              >0000-0001-5368-4635</a
+            >.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn" href="#publications">Publications</a>
+            <a class="btn" href="resumeDP.pdf" target="_blank" rel="noopener">Download Résumé</a>
+            <a class="btn" href="https://github.com/d-passaro" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </section>
+    </div>
 
 
     <main class="container">
@@ -685,6 +351,21 @@
         e.preventDefault();
         el.scrollIntoView({ behavior: "smooth", block: "start" });
         history.pushState(null, "", id);
+      });
+
+      // Theme switcher
+      const themeSelect = document.getElementById("theme-select");
+      const themeLink = document.getElementById("theme-link");
+
+      // Load saved theme or default
+      const savedTheme = localStorage.getItem("theme") || "neon-dark";
+      themeSelect.value = savedTheme;
+      themeLink.href = `themes/${savedTheme}.css`;
+
+      themeSelect.addEventListener("change", (e) => {
+        const theme = e.target.value;
+        themeLink.href = `themes/${theme}.css`;
+        localStorage.setItem("theme", theme);
       });
     </script>
   </body>

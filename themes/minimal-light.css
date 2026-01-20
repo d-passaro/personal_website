@@ -1,0 +1,118 @@
+/* ==========================================================================
+   MINIMAL LIGHT THEME - Clean, professional light theme
+   ========================================================================== */
+
+:root {
+  /* Base colors */
+  --base: #fafafa;
+  --mantle: #f5f5f5;
+  --crust: #eeeeee;
+  --surface0: #ffffff;
+  --surface1: #f8f8f8;
+  --surface2: #e8e8e8;
+
+  /* Text colors */
+  --text: #1a1a1a;
+  --muted: #555555;
+  --subtext1: #666666;
+
+  /* Accent */
+  --accent: #2b6cb0;
+  --accent-2: #1d4ed8;
+  --accent-3: #3b82f6;
+  --blue: #2563eb;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Sizing */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --maxw: 980px;
+
+  /* Derived colors */
+  --border: #e2e2e2;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --selection-bg: rgba(43, 108, 176, 0.2);
+  --link-color: var(--accent);
+  --link-hover: var(--accent-2);
+  --link-underline: rgba(0, 0, 0, 0.15);
+
+  /* Background */
+  --body-bg: var(--base);
+
+  /* Effects - disabled for light theme */
+  --blur-effect: none;
+
+  /* Glow effects - disabled */
+  --glow-gradient: transparent;
+  --glow-opacity: 0;
+  --glow-border: transparent;
+  --glow-hover-opacity: 0;
+
+  /* Header */
+  --header-bg: var(--base);
+  --header-border: var(--border);
+
+  /* Logo */
+  --logo-bg: var(--accent);
+  --logo-shadow: none;
+
+  /* Navigation */
+  --nav-hover-border: var(--border);
+  --nav-hover-bg: var(--surface1);
+
+  /* CTA button */
+  --cta-border: var(--accent);
+  --cta-bg: var(--accent);
+  --cta-shadow: none;
+  --cta-hover-border: var(--accent-2);
+
+  /* Cards */
+  --card-bg: var(--surface0);
+  --pill-bg: var(--surface1);
+
+  /* Kicker dot */
+  --kicker-dot-shadow: none;
+
+  /* Buttons */
+  --btn-bg: transparent;
+  --btn-hover-border: var(--accent);
+  --btn-hover-bg: var(--surface1);
+  --btn-primary-border: var(--accent);
+  --btn-primary-bg: var(--accent);
+  --btn-primary-color: white;
+  --btn-primary-hover-border: var(--accent-2);
+
+  /* Avatar */
+  --avatar-border: var(--border);
+  --avatar-bg: var(--surface1);
+
+  /* Stats */
+  --stat-border: var(--border);
+  --stat-bg: var(--surface1);
+
+  /* Items */
+  --item-border: var(--border);
+  --item-bg: var(--surface1);
+
+  /* Tags */
+  --tag-border: var(--border);
+  --tag-bg: #f0f0f0;
+  --tag-neon-border: var(--accent);
+  --tag-neon-shadow: none;
+
+  /* Timeline */
+  --tl-border: var(--border);
+  --tl-bg: var(--surface1);
+
+  /* Footer */
+  --footer-border: var(--border);
+
+  /* Profile */
+  --profile-photo-border: var(--border);
+  --profile-photo-bg: var(--surface1);
+  --profile-line-border: var(--border);
+  --profile-line-bg: var(--surface1);
+}
