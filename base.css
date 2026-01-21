@@ -5,13 +5,20 @@
 
 /* Box sizing & resets */
 *, *::before, *::after { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { min-height: 100%; }
+
+/* Put the page background on the root element so it spans the full document. */
+html {
+  background: var(--body-bg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 
 body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--text);
-  background: var(--body-bg);
+  background: transparent;
   overflow-x: hidden;
   line-height: 1.6;
 }

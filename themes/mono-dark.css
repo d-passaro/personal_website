@@ -39,10 +39,10 @@
   --link-hover: var(--accent-2);
   --link-underline: rgba(122, 162, 247, 0.3);
 
-  /* Background */
-  --body-bg:
-    radial-gradient(900px 600px at 20% 10%, rgba(122, 162, 247, 0.15), transparent 60%),
-    var(--base);
+   /* Background */
+   --body-bg:
+     linear-gradient(to bottom, rgba(122, 162, 247, 0.1), transparent),
+     var(--base);
 
   /* Effects */
   --blur-effect: blur(10px);
@@ -71,8 +71,8 @@
   --cta-shadow: none;
   --cta-hover-border: var(--accent-2);
 
-  /* Cards */
-  --card-bg: linear-gradient(180deg, var(--surface0), var(--mantle));
+   /* Cards */
+   --card-bg: var(--surface0);
   --pill-bg: rgba(17, 21, 32, 0.5);
 
   /* Kicker dot */
